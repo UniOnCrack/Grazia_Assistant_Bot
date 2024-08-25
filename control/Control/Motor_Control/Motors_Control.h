@@ -1,36 +1,66 @@
-// MotorControl.h
-#ifndef MOTORCONTROL_H
-#define MOTORCONTROL_H
+#ifndef MOTORS_CONTROL_H
+#define MOTORS_CONTROL_H
 
-#define IN1 14   // GPIO pin for IN1
-#define IN2 12   // GPIO pin for IN2
-#define IN3 26   // GPIO pin for IN3
-#define IN4 25   // GPIO pin for IN4
+// Define motor control pins
+#define IN1 14  // Motor 1 Forward
+#define IN2 12  // Motor 1 Backward
+#define IN3 26  // Motor 2 Forward
+#define IN4 25  // Motor 2 Backward
 
+// Stop all motors
+void stopMotors() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, LOW);
+}
+
+// Initialize motors (setup function)
 void initMotors() {
-  // Set motor control pins as outputs
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
+
+  stopMotors(); // Ensure motors are stopped on initialization
 }
 
+// Move motors forward
 void moveMotorsForward() {
-  // Motor A forward
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
-
-  // Motor B forward
   digitalWrite(IN3, HIGH);
   digitalWrite(IN4, LOW);
 }
 
+// Move motors backward
 void moveMotorsBackward() {
-  // Motor A backward
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+}
 
-  // Motor B backward
+// Motor 1 forward
+void motor1Forward() {
+  digitalWrite(IN1, HIGH);
+  digitalWrite(IN2, LOW);
+}
+
+// Motor 1 backward
+void motor1Backward() {
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, HIGH);
+}
+
+// Motor 2 forward
+void motor2Forward() {
+  digitalWrite(IN3, HIGH);
+  digitalWrite(IN4, LOW);
+}
+
+// Motor 2 backward
+void motor2Backward() {
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
 }
