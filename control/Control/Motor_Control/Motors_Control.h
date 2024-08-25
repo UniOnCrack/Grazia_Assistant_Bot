@@ -9,13 +9,13 @@
 
 // Stop all motors
 void stopMotors() {
-  digitalWrite(IN1, LOW);
-  digitalWrite(IN2, LOW);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, LOW);
+  digitalWrite(IN1, 0);
+  digitalWrite(IN2, 0);
+  digitalWrite(IN3, 0);
+  digitalWrite(IN4, 0);
 }
 
-// Initialize motors (setup function)
+// Initialize motors 
 void initMotors() {
   pinMode(IN1, OUTPUT);
   pinMode(IN2, OUTPUT);
@@ -25,7 +25,7 @@ void initMotors() {
   stopMotors(); // Ensure motors are stopped on initialization
 }
 
-// Move motors forward
+// Move forward
 void moveMotorsForward() {
   digitalWrite(IN1, HIGH);
   digitalWrite(IN2, LOW);
@@ -33,7 +33,7 @@ void moveMotorsForward() {
   digitalWrite(IN4, LOW);
 }
 
-// Move motors backward
+// Move backward
 void moveMotorsBackward() {
   digitalWrite(IN1, LOW);
   digitalWrite(IN2, HIGH);
