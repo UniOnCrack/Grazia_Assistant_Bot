@@ -41,13 +41,23 @@ void notify() {
   }
 }
 
-  // Setuo up for connect to controller
+// Setup for connection to the controller
 void setup() {
   Serial.begin(115200);
-  ps5.attach(notify);
-  ps5.begin("10:18:49:7d:6d:f4");
-
+  
+  // Initialize motors
   initMotors();
+  
+  // Attempt to connect to the controller
+  while (!ps5.isConnected()) {
+    Serial.println("Attempting to connect to PS5 controller...");
+    ps5.begin("10:18:49:7d:6d:f4");  // Replace with your controller's Bluetooth address
+    delay(5000);  // Wait before trying to reconnect
+  }
+  
+  // Attach the notify function once connected
+  ps5.attach(notify);
+  Serial.println("PS5 controller connected!");
 }
 
 void loop() {
